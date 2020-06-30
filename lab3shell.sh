@@ -14,8 +14,8 @@ now=`date`
 
 echo "**************************************************************"
 echo "*Name: $name                                                 *"
-echo "*Description: $descr                                         *"
-echo "*Course: $course                                             *"
-echo "*Due Date: $now                                              *"
+echo "*Description: $descr                                          *"
+echo "*Course: $course                                               *"
+echo "*Due Date: $now                   *"
 echo "**************************************************************"
 
