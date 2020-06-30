@@ -10,21 +10,17 @@ read choice
 
 if [[ "$choice" == "1" ]]; then
 	echo 'You selected List'
-fi
-
-if [[ "$choice" == "2" ]]; then
+elif [[ "$choice" == "2" ]]; then
 	echo 'You selected Add'
-fi
-
-if [[ "$choice" == "3" ]]; then
+elif [[ "$choice" == "3" ]]; then
 	echo 'You selected Edit'
-fi
 
-if [[ "$choice" == "4" ]]; then
+elif [[ "$choice" == "4" ]]; then
 	echo 'You selected Remove'
-fi
 
-if [[ "$choice" == "5" ]]; then
+elif [[ "$choice" == "5" ]]; then
 	exit 1
+else
+	echo "Please choose a number 1 to 5; terminating script"
 fi
 
