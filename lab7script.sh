@@ -32,6 +32,7 @@ exec_menu()
 		case "$i" in
 			"1")
 				echo "List/Search functionality will go here"
+				cat $BOOK | column -n -t -s ','| less -S
 				;;
 			"2")
 				#defined below
