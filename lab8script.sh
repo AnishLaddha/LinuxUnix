@@ -32,7 +32,7 @@ exec_menu()
 		case "$i" in
 			"1")
 				#defined below
-				case_one()
+				case_one
 				;;
 				
 			"2")
@@ -40,10 +40,10 @@ exec_menu()
 				add_new_entry				
 				;;
 			"3")
-				do_edit()
+				do_edit
 				;;
 			"4")
-				do_remove()
+				do_remove
 				;;
 			"5")
 				echo "Thanks for using, quitting now!"
@@ -65,12 +65,13 @@ case_one(){
 	read i
 	case "$i" in
 		"1")
-			do_list()
+			do_list
 			;;
 		"2")
-			do_search()
+			do_search
 			;;
 	esac
+	
 
 }
 do_edit(){
@@ -82,10 +83,10 @@ do_edit(){
 	echo "Enter the new stuff in the following format:"
 	echo "FirstName,LastName,Address,City,State,Zip,Phone,Cell,Email,MethodOfContact"
 	read newinfo
-	sed -i 's/$out/$newinfo/g' $BOOK
+	sed -i "s/$out/$newinfo/g" "$BOOK"
 
 	echo "done!"
-	;;
+	
 
 }
 
@@ -103,20 +104,20 @@ do_remove(){
 	read conf
 	case "$conf" in
 		"1")
-			sed '/$term/d' $BOOK
+			sed "/$term/d" "$BOOK"
 			;;
 		"2")
 			echo "ok, removal cancelled"
 			;;
 	esac
-	;;
+	
 
 }
 
 do_list(){
 	#lists all the things in the csv file
 	cat $BOOK | column -n -t -s ','| less -S
-	;;
+	
 
 }
 
@@ -129,7 +130,7 @@ do_search(){
 
 	#outputs it using cat column and out
 	cat out | column -n -t -s ','| less -S
-	;;
+	
 
 }
 
@@ -142,7 +143,7 @@ add_new_entry()
 	read INFORMATION
 	#appends to bottom of file
 	echo "$INFORMATION" >> $BOOK
-	;;
+	
 }
 
 
