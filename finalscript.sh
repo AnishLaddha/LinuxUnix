@@ -1,8 +1,8 @@
 #!/bin/sh
 
-echo "Enter contact file name (make sure to add .csv to the end): "
-read BOOK
-#this stuff above takes in the file name to whether create or where the current contacts are stored
+BOOK="address.csv"
+#file that addressbook is stored in ^
+
 
 show_menu()
 ##This function is very simple, just prints information for user
@@ -75,14 +75,18 @@ case_one(){
 
 }
 do_edit(){
+	#gets term that needs to be edited
 	echo "enter a unique identifier of the person you want to edit i.e LastName, phone number, or email"
 	read term
 	echo "The following line will be edited"
+	#gets the line and output
 	out="`grep $term $BOOK`"
 	echo $out
 	echo "Enter the new stuff in the following format:"
 	echo "FirstName,LastName,Address,City,State,Zip,Phone,Cell,Email,MethodOfContact"
+	#gets new stuff
 	read newinfo
+	#edits and replaces
 	sed -i "s/$out/$newinfo/g" "$BOOK"
 
 	echo "done!"
@@ -97,17 +101,22 @@ do_remove(){
 	echo "Phone, Cell, email"
 	read term
 	echo "Following Line(s) will be removed: "
+	#searches and gets output
 	output="`grep $term $BOOK`"
 	echo $output
+	
+	#confirms decision
 	echo "Are you sure?: "
 	echo "1: yes"
 	echo "2: no"
 	read conf
 	case "$conf" in
 		"1")
+			#using sed, removes that line
 			sed -i "/$output/d" "$BOOK"
 			;;
 		"2")
+			#does nothing, cancels removal
 			echo "ok, removal cancelled"
 			;;
 	esac
@@ -126,9 +135,11 @@ do_search(){
 	#askes user for info
 	echo "Enter the value you would like us to search for. This could be a name, address, phone number etc."
 	read INFORMATION
-	#greps for the input
-	grep $INFORMATION $BOOK>"addressbooktemp.csv"
+	#greps for the input, stores in a temporary file
+	grep $INFORMATION $BOOK>"addressbooktemp.csv"\
+	#displays it in a cool way
 	cat "addressbooktemp.csv" | column -n -t -s ','| less -S
+	#deletes temporary file
 	rm "addressbooktemp.csv"
 
 	
